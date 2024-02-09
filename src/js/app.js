@@ -1,13 +1,11 @@
 export default function validateNumber(phoneNumber) {
-// function validateNumber(phoneNumber) {
+
     // удаляем все лишнее
     const deleteSymbol = phoneNumber.replace(/\D/g, '');
 
-    console.log(`deleteSymbol: ${deleteSymbol}`);
-    console.log(`deleteSymbol.length: ${deleteSymbol.length}`);
-
     let correctForm = null;
 
+    // логика замены - для китая и россии
     if (deleteSymbol.length == 12 && deleteSymbol.startsWith('86')) {
         console.log(deleteSymbol)
         correctForm = '+8' + deleteSymbol.slice(1);
@@ -21,10 +19,3 @@ export default function validateNumber(phoneNumber) {
     }
     return correctForm;
 }
-
-// try {
-//     const phonenum = validateNumber('+86 000 000 ');
-//     console.log(phonenum);
-// } catch (error) {
-//     console.error(error.message);
-// }
