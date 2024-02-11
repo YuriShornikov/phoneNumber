@@ -20,4 +20,7 @@ describe('test func', () => {
     test('less 10 symbols', () => {
         expect(() => validateNumber('+86 000 000 ')).toThrow('Uncorrect number phone');
     })
+    test('another less 10 symbols', () => {
+        expect(() => validateNumber('+12343544')).toThrow('Uncorrect number phone');
+    })
 })
