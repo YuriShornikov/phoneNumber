@@ -1,21 +1,29 @@
 export default function validateNumber(phoneNumber) {
 
-    // удаляем все лишнее
-    const deleteSymbol = phoneNumber.replace(/\D/g, '');
-
     let correctForm = null;
+    const createError = function() {
+        throw new Error('Uncorrect number phone');
+    }
 
-    // логика замены - для китая и россии
-    if (deleteSymbol.length == 12 && deleteSymbol.startsWith('86')) {
-        console.log(deleteSymbol)
-        correctForm = '+8' + deleteSymbol.slice(1);
+    // удаляем все символы, кроме цифр
+    let deleteSymbol = phoneNumber.replace(/\D/g, '');
+
+    // логика теста
+    if (/^\+{0,1}[1-9]\d{1}[-\s(]/.test(phoneNumber)) {
+        
+        if (deleteSymbol.length == 12) {
+            correctForm = '+' + deleteSymbol;
+            return correctForm;
+        } else{
+            createError();
+        }  
     } else if (deleteSymbol.length == 10) {
         correctForm = '+7' + deleteSymbol;
     } else if (deleteSymbol.length == 11) {
         correctForm = '+7' + deleteSymbol.slice(1);
     }
     else {
-        throw new Error('Uncorrect number phone');
+        createError();
     }
     return correctForm;
 }

@@ -13,6 +13,10 @@ describe('test func', () => {
         const num = validateNumber('+86 000 000 0000');
         expect(num).toBe('+860000000000');
     })
+    test('another 12 symbols', () => {
+        const num = validateNumber('+36 000 000 0000');
+        expect(num).toBe('+360000000000');
+    })
     test('less 10 symbols', () => {
         expect(() => validateNumber('+86 000 000 ')).toThrow('Uncorrect number phone');
     })
